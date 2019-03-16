@@ -65,7 +65,7 @@ def  inputLayer(json):
     outSy = json[_out_sy]
     output(_inputLayer + _out_depth, outDepth)
     output(_inputLayer + _out_sx, outSx)
-    output(_inputLayer + _out_sx, outSy)
+    output(_inputLayer + _out_sy, outSy)
 
 def  reluLayer(json):
     outDepth = json[_out_depth]
@@ -73,17 +73,17 @@ def  reluLayer(json):
     outSy = json[_out_sy]
     output(_reluLayer + _out_depth, outDepth)
     output(_reluLayer + _out_sx, outSx)
-    output(_reluLayer + _out_sx, outSy)
+    output(_reluLayer + _out_sy, outSy)
 
-def  poolLayer(json):
-    sx = json[_sx]
-    sy = json[_sy]
-    stride = json[_stride]
-    inDepth = json[_in_depth]
-    outDepth = json[_out_depth]
-    outSx = json[_out_sx]
-    outSy = json[_out_sy]
-    pad = json[_pad]
+def  poolLayer(pool):
+    sx = pool[_sx]
+    sy = pool[_sy]
+    stride = pool[_stride]
+    inDepth = pool[_in_depth]
+    outDepth = pool[_out_depth]
+    outSx = pool[_out_sx]
+    outSy = pool[_out_sy]
+    pad = pool[_pad]
 
     output(_poolLayer + _sx, sx)
     output(_poolLayer + _sy, sy)
