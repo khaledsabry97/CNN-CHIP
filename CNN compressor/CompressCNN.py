@@ -6,6 +6,7 @@ _in_depth = "in_depth"
 _out_depth = "out_depth"
 _out_sx = "out_sx"
 _out_sy = "out_sy"
+_in_sx = "in_sx"
 _sx = "sx"
 _sy = "sy"
 _stride = "stride"
@@ -195,6 +196,88 @@ def  fcLayer(json):
         value = int(biasesW[str(i)] * 32768)
         output(_fcLayer + _biases + " " + _w + "'" + str(i) + "' ", value)
 
+
+def allCnn(cnn):
+    c = cnn["layers"]
+    output("num Of Layers", len(c))
+    convJson = c[1]
+    poolJson = c[3]
+    fcJson = c[4]
+    sx = convJson[_sx]
+    inDepth = convJson[_in_depth]
+    outDepth = convJson[_out_depth]
+    outSx = convJson[_out_sx]
+    l1DecayMul = convJson[_l1_decay_mul]
+    l2DecayMul = convJson[_l2_decay_mul]
+    pad = convJson[_pad]
+    output(_convLayer + _sx, sx)
+    output(_convLayer + _in_depth, inDepth)
+    output(_convLayer + _out_depth, outDepth)
+    output(_convLayer + _out_sx, outSx)
+    output(_convLayer + _l1_decay_mul, l1DecayMul)
+    output(_convLayer + _l2_decay_mul, l2DecayMul)
+    output(_convLayer + _pad, pad)
+    output(_convLayer + "Filter count", len(convJson[_filters]))
+    output(_convLayer + "id", 1)
+
+    biases = convJson[_biases]
+    biasesDepth = biases[_depth]
+    output(_convLayer + _biases + _depth, biasesDepth)
+    biasesW = biases[_w]
+    for i in range(8):
+        value = int(biasesW[str(i)] * 32768)
+        output(_convLayer + _biases + " " + _w + "'" + str(i) + "' ", value)
+
+
+    coun = 0
+    for c in convJson[_filters]:
+        w = c[_w]
+        for i in range(25):
+            value = int(w[str(i)] * 32768)
+            output(_convLayer + _filters + " '" + str(coun) + "' " + _w + "'" + str(i) + "' ", value)
+        coun += 1
+
+    sx = poolJson[_sx]
+    inDepth = poolJson[_in_depth]
+    outDepth = poolJson[_out_depth]
+    outSx = poolJson[_out_sx]
+    pad = poolJson[_pad]
+
+    output(_poolLayer + _sx, sx)
+    output(_poolLayer + _in_depth, inDepth)
+    output(_poolLayer + _out_depth, outDepth)
+    output(_poolLayer + _out_sx, outSx)
+    output(_poolLayer + _in_sx, convJson[_out_sx])
+    output(_poolLayer + _pad, pad)
+    output(_poolLayer + "id", 2)
+
+
+    num_inputs = fcJson[_num_inputs]
+
+    output(_fcLayer + _num_inputs, num_inputs)
+
+    biases = fcJson[_biases]
+    biasesW = biases[_w]
+    for i in range(10):
+        value = int(biasesW[str(i)] * pow(2,15))
+        output(_fcLayer + _biases + " " + _w + "'" + str(i) + "' ", value)
+
+
+    for i in range(num_inputs):
+        coun = 1
+        for c in fcJson[_filters]:
+            w = c[_w]
+            value = int(w[str(i)] * pow(2, 15))
+            output(_fcLayer + _filters + " '" + str(coun) + "' " + _w + "'" + str(i) + "' ", value)
+            coun +=1
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
     #two strings to write in them the binary code and identification for that code
     biString = ""
@@ -204,15 +287,16 @@ if __name__ == "__main__":
     #read json file
     with open("CNN_info_Sample.json","r") as f:
         cnn = json.load(f)
+    allCnn(cnn)
     #get the layers from json file
     c =  cnn["layers"]
     #write them in file as you want
-    inputLayer(c[0])
-    reluLayer(c[2])
-    poolLayer(c[3])
-    softmaxLayer(c[5])
-    convLayer(c[1])
-    fcLayer(c[4])
+    #inputLayer(c[0])
+    #reluLayer(c[2])
+    #poolLayer(c[3])
+    #softmaxLayer(c[5])
+    #convLayer(c[1])
+    #fcLayer(c[4])
     #print to the file
     printTofile()
 
