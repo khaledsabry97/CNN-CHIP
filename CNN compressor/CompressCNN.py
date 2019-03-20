@@ -1,5 +1,5 @@
 import json
-
+from bitstring import Bits
 #just variables to make it easy when you rename it
 _layers = "layers"
 _in_depth = "in_depth"
@@ -27,6 +27,35 @@ _fcLayer = "Fc Layer "
 #function to convert integer number to binary
 get_bin = lambda x, n: format(x, 'b').zfill(n)
 
+def compress(s):
+    global wholeLength
+    global compressedLength
+    if len(s) <=1:
+        return ""
+
+    countBits =2
+    sizeOfCompression = 2
+
+
+
+    numsTimes = pow(2,countBits) -1
+    count  =numsTimes -1
+    temp = ""
+    current = s[0:sizeOfCompression]
+    for i in range(sizeOfCompression,len(s)-1,sizeOfCompression):
+        if s[i:i + sizeOfCompression] != current or count == 0:
+            temp += str(get_bin(numsTimes - count, countBits))
+            temp += current
+            count = numsTimes - 1
+        if s[i:i+sizeOfCompression] == current:
+            count -= 1
+        current = s[i:i+sizeOfCompression]
+
+    temp += str(get_bin(numsTimes - count, countBits))
+    temp += current
+    wholeLength += len(s)
+    compressedLength += len(temp)
+    return temp
 
 #print two files after you make all the processing in the program and store them in the bistring and idstring
 def printTofile():
@@ -40,10 +69,12 @@ def printTofile():
     text_file.write(idString)
     text_file.close()
 
+
 #usage of this function to add to the bistring the new value binary and idstring what this value refer to
-def output(name,valueInteger):
+def outputS(name,valueInteger):
     global biString
     global idString
+    global tempString
     global count
     s = get_bin(valueInteger, 16)
     sr = list(s)
@@ -59,6 +90,53 @@ def output(name,valueInteger):
     idString += "\n"
 
     count += 1
+def twosComplement(vaueInteger):
+    a = Bits(int=vaueInteger,length=16)
+    return  a.bin
+
+def output(name,valueInteger):
+    global biString
+    global idString
+    global count
+    global tempString
+
+
+    tempString += twosComplement(valueInteger)
+    idString += name
+    idString += ","
+
+
+def newAddress():
+    global biString
+    global idString
+    global count
+    global tempString
+
+    if tempString != "":
+        biString +=tempString
+        biString += "\n"
+
+    tempString =""
+    if count != 0:
+        idString += "\n"
+    idString += str(count)
+    idString += " : "
+    count+=1
+
+
+
+def check(str1,str2):
+    global countBits
+    arr1 = str1.split("\n")
+    arr2 = str2.split("\n")
+
+    for
+
+
+
+
+
+
 #all of the upcomming functions just for reading the json file
 def  inputLayer(json):
     outDepth = json[_out_depth]
@@ -199,7 +277,9 @@ def  fcLayer(json):
 
 def allCnn(cnn):
     c = cnn["layers"]
+    newAddress()
     output("num Of Layers", len(c))
+    newAddress()
     convJson = c[1]
     poolJson = c[3]
     fcJson = c[4]
@@ -219,7 +299,7 @@ def allCnn(cnn):
     output(_convLayer + _pad, pad)
     output(_convLayer + "Filter count", len(convJson[_filters]))
     output(_convLayer + "id", 1)
-
+    newAddress()
     biases = convJson[_biases]
     biasesDepth = biases[_depth]
     output(_convLayer + _biases + _depth, biasesDepth)
@@ -228,15 +308,18 @@ def allCnn(cnn):
         value = int(biasesW[str(i)] * 32768)
         output(_convLayer + _biases + " " + _w + "'" + str(i) + "' ", value)
 
-
+    newAddress()
     coun = 0
     for c in convJson[_filters]:
         w = c[_w]
         for i in range(25):
+            if  w[str(i)] > 1 or w[str(i)] < -1:
+                print(w[str(i)])
+
             value = int(w[str(i)] * 32768)
             output(_convLayer + _filters + " '" + str(coun) + "' " + _w + "'" + str(i) + "' ", value)
         coun += 1
-
+    newAddress()
     sx = poolJson[_sx]
     inDepth = poolJson[_in_depth]
     outDepth = poolJson[_out_depth]
@@ -251,26 +334,32 @@ def allCnn(cnn):
     output(_poolLayer + _pad, pad)
     output(_poolLayer + "id", 2)
 
+    newAddress()
+
+
 
     num_inputs = fcJson[_num_inputs]
 
     output(_fcLayer + _num_inputs, num_inputs)
-
+    newAddress()
     biases = fcJson[_biases]
     biasesW = biases[_w]
     for i in range(10):
         value = int(biasesW[str(i)] * pow(2,15))
         output(_fcLayer + _biases + " " + _w + "'" + str(i) + "' ", value)
 
+    newAddress()
 
     for i in range(num_inputs):
         coun = 1
         for c in fcJson[_filters]:
             w = c[_w]
+            if  w[str(i)] > 1 or w[str(i)] < -1:
+                print(w[str(i)])
             value = int(w[str(i)] * pow(2, 15))
             output(_fcLayer + _filters + " '" + str(coun) + "' " + _w + "'" + str(i) + "' ", value)
             coun +=1
-
+    newAddress()
 
 
 
@@ -281,7 +370,13 @@ def allCnn(cnn):
 if __name__ == "__main__":
     #two strings to write in them the binary code and identification for that code
     biString = ""
+    biString2 = ""
+    biStringCompressed = ""
     idString = ""
+    idString2 = ""
+    tempString =""
+    wholeLength = 0
+    compressedLength = 0
     #count to print the count of the row in the id file
     count = 0
     #read json file
@@ -298,5 +393,11 @@ if __name__ == "__main__":
     #convLayer(c[1])
     #fcLayer(c[4])
     #print to the file
+    arr = biString.split("\n")
+    for i in range( len(arr)):
+        biStringCompressed += compress(arr[i])
+        biStringCompressed +="\n"
+    print((compressedLength/wholeLength)*100)
+
     printTofile()
 
