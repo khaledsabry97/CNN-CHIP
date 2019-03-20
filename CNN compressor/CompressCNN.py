@@ -26,6 +26,8 @@ _convLayer = "Conv Layer "
 _fcLayer = "Fc Layer "
 #function to convert integer number to binary
 get_bin = lambda x, n: format(x, 'b').zfill(n)
+countBits = 2
+sizeOfCompression = 6 #should be able to divide by 2
 
 def compress(s):
     global wholeLength
@@ -33,8 +35,7 @@ def compress(s):
     if len(s) <=1:
         return ""
 
-    countBits =2
-    sizeOfCompression = 2
+
 
 
 
@@ -46,10 +47,11 @@ def compress(s):
         if s[i:i + sizeOfCompression] != current or count == 0:
             temp += str(get_bin(numsTimes - count, countBits))
             temp += current
-            count = numsTimes - 1
-        if s[i:i+sizeOfCompression] == current:
-            count -= 1
+            count = numsTimes
+       # if s[i:i+sizeOfCompression] == current:
+          #  count -= 1
         current = s[i:i+sizeOfCompression]
+        count -=1
 
     temp += str(get_bin(numsTimes - count, countBits))
     temp += current
@@ -125,12 +127,25 @@ def newAddress():
 
 
 
-def check(str1,str2):
+def check(compressed,str2):
     global countBits
-    arr1 = str1.split("\n")
+    global sizeOfCompression
+    arr1 = compressed.split("\n")
     arr2 = str2.split("\n")
+    for k in range(len(arr1)):
+        i = arr1[k]
+        temp = ""
+        for j in range(0,len(i),countBits+sizeOfCompression):
+            a = Bits(bin="0"+i[j:j+countBits])
+            count =a.int
+            for _ in range(count):
+                temp += i[j+countBits:j+countBits+sizeOfCompression]
 
-    for
+        if temp != arr2[k]:
+            print("didn't compress right")
+            return
+
+    print("successfully compressed")
 
 
 
@@ -396,7 +411,9 @@ if __name__ == "__main__":
     arr = biString.split("\n")
     for i in range( len(arr)):
         biStringCompressed += compress(arr[i])
-        biStringCompressed +="\n"
+        if i != len(arr) -1:
+            biStringCompressed +="\n"
+    check(biStringCompressed,biString)
     print((compressedLength/wholeLength)*100)
 
     printTofile()
