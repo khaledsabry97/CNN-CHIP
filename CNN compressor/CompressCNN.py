@@ -136,8 +136,8 @@ def check(compressed,str2):
         i = arr1[k]
         temp = ""
         for j in range(0,len(i),countBits+sizeOfCompression):
-            a = Bits(bin="0"+i[j:j+countBits])
-            count =a.int
+            a = Bits(bin=i[j:j+countBits])
+            count =a.uint
             for _ in range(count):
                 temp += i[j+countBits:j+countBits+sizeOfCompression]
 

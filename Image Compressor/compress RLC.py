@@ -1,4 +1,36 @@
 import cv2
+
+from bitstring import Bits
+
+#to check if the image compressed successfully
+def check(compressed):
+    global gray_img
+    global str
+    temp =current = ""
+    for i in range(28):
+        for j in range(28):
+                current += get_bin(gray_img[i, j], 8)
+
+
+    arr1 = compressed.splitlines()
+
+    for i in range(len(arr1)):
+
+        count = Bits(bin= arr1[i][0:8]).uint
+        value = arr1[i][8:16]
+        for j in range(count):
+            temp += value
+
+
+    if temp != current:
+        print("didn't compress right")
+        return
+
+
+    print("successfully compressed")
+
+
+
 def outputFile(name):
     text_file = open(name, "w")
     text_file.write(str)
@@ -7,7 +39,7 @@ def outputFile(name):
 def addToStr(count,value):
     global str
     str += get_bin(count, 8)
-    str += get_bin(prev, 8)
+    str += get_bin(value, 8)
     str += "\n"
 
 if __name__ == "__main__":
@@ -50,6 +82,7 @@ if __name__ == "__main__":
     print(c)
     print(rows)
     print(str)
+    check(str)
     outputFile("Output.txt")
 
 
