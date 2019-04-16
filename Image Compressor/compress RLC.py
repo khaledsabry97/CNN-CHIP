@@ -78,7 +78,7 @@ if __name__ == "__main__":
     print(count, prev)
     addToStr(count, prev)
     # to indicate that last of the file
-    addToStr(0, 161)
+    addToStr(0, 0)
     print(c)
     print(rows)
     print(str)

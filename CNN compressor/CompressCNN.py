@@ -27,17 +27,13 @@ _fcLayer = "Fc Layer "
 #function to convert integer number to binary
 get_bin = lambda x, n: format(x, 'b').zfill(n)
 countBits = 2
-sizeOfCompression = 6 #should be able to divide by 2
+sizeOfCompression = 14 #should be able to divide by 2
 
 def compress(s):
     global wholeLength
     global compressedLength
     if len(s) <=1:
         return ""
-
-
-
-
 
     numsTimes = pow(2,countBits) -1
     count  =numsTimes -1
@@ -60,11 +56,14 @@ def compress(s):
     return temp
 
 #print two files after you make all the processing in the program and store them in the bistring and idstring
-def printTofile():
+def printTofile(bi):
     global biString
     global idString
     global count
     text_file = open("biString.txt", "w")
+    text_file.write(bi)
+    text_file.close()
+    text_file = open("biOriginalString.txt", "w")
     text_file.write(biString)
     text_file.close()
     text_file = open("idString.txt", "w")
@@ -78,7 +77,7 @@ def outputS(name,valueInteger):
     global idString
     global tempString
     global count
-    s = get_bin(valueInteger, 16)
+    s = get_bin(valueInteger, sizeOfCompression)
     sr = list(s)
     if sr[0] == '-':
         sr[0] = '1'
@@ -93,7 +92,7 @@ def outputS(name,valueInteger):
 
     count += 1
 def twosComplement(vaueInteger):
-    a = Bits(int=vaueInteger,length=16)
+    a = Bits(int=vaueInteger,length=sizeOfCompression)
     return  a.bin
 
 def output(name,valueInteger):
@@ -149,147 +148,6 @@ def check(compressed,str2):
 
 
 
-
-
-
-#all of the upcomming functions just for reading the json file
-def  inputLayer(json):
-    outDepth = json[_out_depth]
-    outSx = json[_out_sx]
-    outSy = json[_out_sy]
-    output(_inputLayer + _out_depth, outDepth)
-    output(_inputLayer + _out_sx, outSx)
-    output(_inputLayer + _out_sy, outSy)
-
-def  reluLayer(json):
-    outDepth = json[_out_depth]
-    outSx = json[_out_sx]
-    outSy = json[_out_sy]
-    output(_reluLayer + _out_depth, outDepth)
-    output(_reluLayer + _out_sx, outSx)
-    output(_reluLayer + _out_sy, outSy)
-
-def  poolLayer(pool):
-    sx = pool[_sx]
-    sy = pool[_sy]
-    stride = pool[_stride]
-    inDepth = pool[_in_depth]
-    outDepth = pool[_out_depth]
-    outSx = pool[_out_sx]
-    outSy = pool[_out_sy]
-    pad = pool[_pad]
-
-    output(_poolLayer + _sx, sx)
-    output(_poolLayer + _sy, sy)
-    output(_poolLayer + _stride, stride)
-    output(_poolLayer + _in_depth, inDepth)
-    output(_poolLayer + _out_depth, outDepth)
-    output(_poolLayer + _out_sx, outSx)
-    output(_poolLayer + _out_sy, outSy)
-    output(_poolLayer + _pad, pad)
-
-def  softmaxLayer(json):
-    outDepth = json[_out_depth]
-    outSx = json[_out_sx]
-    outSy = json[_out_sy]
-    numInputs = json[_num_inputs]
-
-    output(_softmaxLayer + _out_sx, outSx)
-    output(_softmaxLayer + _out_sy, outSy)
-    output(_softmaxLayer + _num_inputs, numInputs)
-    output(_softmaxLayer + _out_depth, outDepth)
-
-
-def  convLayer(json):
-    sx = json[_sx]
-    sy = json[_sy]
-    stride = json[_stride]
-    inDepth = json[_in_depth]
-    outDepth = json[_out_depth]
-    outSx = json[_out_sx]
-    outSy = json[_out_sy]
-    l1DecayMul = json[_l1_decay_mul]
-    l2DecayMul = json[_l2_decay_mul]
-    pad = json[_pad]
-    output(_convLayer + _sx, sx)
-    output(_convLayer + _sy, sy)
-    output(_convLayer + _stride, stride)
-    output(_convLayer + _in_depth, inDepth)
-    output(_convLayer + _out_depth, outDepth)
-    output(_convLayer + _out_sx, outSx)
-    output(_convLayer + _out_sy, outSy)
-    output(_convLayer + _l1_decay_mul, l1DecayMul)
-    output(_convLayer + _l2_decay_mul, l2DecayMul)
-    output(_convLayer + _pad, pad)
-    #todo right in the file before you enter the loop
-    coun= 0
-    for c in json[_filters]:
-        sx = c[_sx]
-        sy = c[_sy]
-        depth = c[_depth]
-
-        output(_convLayer+ _filters + " '" + str(coun) + "' " + _sx, sx)
-        output(_convLayer+ _filters + " '" + str(coun) + "' " + _sy, sy)
-        output(_convLayer+ _filters + " '" + str(coun) + "' " + _depth, depth)
-        w = c[_w]
-        for i in  range(25):
-                value = int(w[str(i)]*32768)
-                output(_convLayer + _filters + " '" + str(coun) + "' " +_w+  "'" + str(i) + "' " , value)
-
-        coun += 1
-    biases= json[_biases]
-    biasesSx = biases[_sx]
-    biasesSy = biases[_sy]
-    biasesDepth = biases[_depth]
-    output(_convLayer + _biases + " '" + str(coun) + "' " + _sx, biasesSx)
-    output(_convLayer + _biases + " '" + str(coun) + "' " + _sy, biasesSy)
-    output(_convLayer + _biases + " '" + str(coun) + "' " + _depth, biasesDepth)
-    biasesW = biases[_w]
-    for i in range(8):
-        value = int(biasesW[str(i)] * 32768)
-        output(_convLayer + _biases + " " + _w + "'" + str(i) + "' ", value)
-
-def  fcLayer(json):
-    outDepth = json[_out_depth]
-    outSx = json[_out_sx]
-    outSy = json[_out_sy]
-    num_inputs = json[_num_inputs]
-    l1DecayMul = json[_l1_decay_mul]
-    l2DecayMul = json[_l2_decay_mul]
-    output(_fcLayer + _out_depth, outDepth)
-    output(_fcLayer + _out_sx, outSx)
-    output(_fcLayer + _out_sy, outSy)
-    output(_fcLayer + _num_inputs, num_inputs)
-    output(_fcLayer + _l1_decay_mul, l1DecayMul)
-    output(_fcLayer + _l2_decay_mul, l2DecayMul)
-    coun= 0
-    for c in json[_filters]:
-        sx = c[_sx]
-        sy = c[_sy]
-        depth = c[_depth]
-
-        output(_fcLayer+ _filters + " '" + str(coun) + "' " + _sx, sx)
-        output(_fcLayer+ _filters + " '" + str(coun) + "' " + _sy, sy)
-        output(_fcLayer+ _filters + " '" + str(coun) + "' " + _depth, depth)
-        w = c[_w]
-        for i in  range(1152):
-                value = int(w[str(i)]*32768)
-                output(_fcLayer + _filters + " '" + str(coun) + "' " +_w+  "'" + str(i) + "' " , value)
-
-        coun += 1
-    biases= json[_biases]
-    biasesSx = biases[_sx]
-    biasesSy = biases[_sy]
-    biasesDepth = biases[_depth]
-    output(_fcLayer + _biases + " '" + str(coun) + "' " + _sx, biasesSx)
-    output(_fcLayer + _biases + " '" + str(coun) + "' " + _sy, biasesSy)
-    output(_fcLayer + _biases + " '" + str(coun) + "' " + _depth, biasesDepth)
-    biasesW = biases[_w]
-    for i in range(10):
-        value = int(biasesW[str(i)] * 32768)
-        output(_fcLayer + _biases + " " + _w + "'" + str(i) + "' ", value)
-
-
 def allCnn(cnn):
     c = cnn["layers"]
     newAddress()
@@ -320,7 +178,7 @@ def allCnn(cnn):
     output(_convLayer + _biases + _depth, biasesDepth)
     biasesW = biases[_w]
     for i in range(8):
-        value = int(biasesW[str(i)] * 32768)
+        value = int(biasesW[str(i)] * pow(2,sizeOfCompression -1))
         output(_convLayer + _biases + " " + _w + "'" + str(i) + "' ", value)
 
     newAddress()
@@ -331,7 +189,7 @@ def allCnn(cnn):
             if  w[str(i)] > 1 or w[str(i)] < -1:
                 print(w[str(i)])
 
-            value = int(w[str(i)] * 32768)
+            value = int(w[str(i)] * pow(2,sizeOfCompression -1))
             output(_convLayer + _filters + " '" + str(coun) + "' " + _w + "'" + str(i) + "' ", value)
         coun += 1
     newAddress()
@@ -360,7 +218,7 @@ def allCnn(cnn):
     biases = fcJson[_biases]
     biasesW = biases[_w]
     for i in range(10):
-        value = int(biasesW[str(i)] * pow(2,15))
+        value = int(biasesW[str(i)] *pow(2,sizeOfCompression -1))
         output(_fcLayer + _biases + " " + _w + "'" + str(i) + "' ", value)
 
     newAddress()
@@ -371,7 +229,7 @@ def allCnn(cnn):
             w = c[_w]
             if  w[str(i)] > 1 or w[str(i)] < -1:
                 print(w[str(i)])
-            value = int(w[str(i)] * pow(2, 15))
+            value = int(w[str(i)] * pow(2,sizeOfCompression -1))
             output(_fcLayer + _filters + " '" + str(coun) + "' " + _w + "'" + str(i) + "' ", value)
             coun +=1
     newAddress()
@@ -398,15 +256,7 @@ if __name__ == "__main__":
     with open("CNN_info_Sample.json","r") as f:
         cnn = json.load(f)
     allCnn(cnn)
-    #get the layers from json file
-    c =  cnn["layers"]
-    #write them in file as you want
-    #inputLayer(c[0])
-    #reluLayer(c[2])
-    #poolLayer(c[3])
-    #softmaxLayer(c[5])
-    #convLayer(c[1])
-    #fcLayer(c[4])
+
     #print to the file
     arr = biString.split("\n")
     for i in range( len(arr)):
@@ -416,5 +266,16 @@ if __name__ == "__main__":
     check(biStringCompressed,biString)
     print((compressedLength/wholeLength)*100)
 
-    printTofile()
+    arr = biStringCompressed.split("\n")
+    biStringCompressed = ""
+    for i in range(len(arr)):
+        if(arr[i] == ""):
+            continue
+        print(len(arr[i])%16)
+        biStringCompressed += arr[i]
+        biStringCompressed +="\n"
+        biStringCompressed +="0000000000000000"
+        biStringCompressed += "\n"
+
+    printTofile(biStringCompressed)
 
