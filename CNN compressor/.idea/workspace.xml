@@ -4,6 +4,8 @@
     <list default="true" id="a3e65bc1-d57d-4c86-9f97-e2eefa03b21a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CompressCNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/CompressCNN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biOriginalString.txt" beforeDir="false" afterPath="$PROJECT_DIR$/biOriginalString.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/biString.txt" beforeDir="false" afterPath="$PROJECT_DIR$/biString.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Image Compressor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Image Compressor/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,29 +19,33 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CompressCNN.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4645">
-              <caret line="296" selection-start-line="296" selection-end-line="296" />
+            <state relative-caret-position="254">
+              <caret line="301" column="39" lean-forward="true" selection-start-line="301" selection-start-column="39" selection-end-line="301" selection-end-column="39" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#801#1534#0" />
+                <element signature="e#4631#5171#0" />
+                <element signature="e#1671#2007#0" />
+                <element signature="e#2152#2504#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/biOriginalString.txt">
+        <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1993870068/builtins.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4446">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="-3146">
+              <caret line="50" column="4" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+        <entry file="file://$PROJECT_DIR$/ValueVsBits">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="-260947">
+              <caret line="261" column="14" selection-start-line="261" selection-start-column="14" selection-end-line="261" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -59,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/bitstring.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="1368" selection-start-line="1368" selection-end-line="1368" />
+            <state relative-caret-position="-815">
+              <caret line="731" column="8" selection-start-line="731" selection-start-column="8" selection-end-line="731" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -95,7 +101,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CNN_info_Sample.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5876">
+            <state relative-caret-position="7046">
               <caret line="271" column="21" selection-start-line="271" selection-start-column="21" selection-end-line="271" selection-end-column="41" />
             </state>
           </provider>
@@ -128,8 +134,8 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-7" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1087" />
   </component>
@@ -145,10 +151,6 @@
             <path>
               <item name="CNN compressor" type="b2602c69:ProjectViewProjectNode" />
               <item name="CNN compressor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CNN compressor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -246,7 +248,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15700738" />
@@ -254,7 +256,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32502595" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32502595" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39875388" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -297,23 +299,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/CompressCNN.py</url>
-          <line>84</line>
+          <line>213</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/CompressCNN.py</url>
-          <line>105</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/CompressCNN.py</url>
-          <line>244</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/CompressCNN.py</url>
-          <line>258</line>
-          <option name="timeStamp" value="27" />
+          <line>264</line>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -323,11 +315,23 @@
         <watch expression="compressedLength" language="Python" />
         <watch expression="biString" language="Python" />
         <watch expression="len(c)" language="Python" />
+        <watch expression="len(number)" language="Python" />
+        <watch expression="len(setFloatBits)" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>len(setFloatBits)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>len(number)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>len(c)</expression-string>
         <language-id>Python</language-id>
@@ -396,6 +400,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CNN_info_Sample.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7046">
+          <caret line="271" column="21" selection-start-line="271" selection-start-column="21" selection-end-line="271" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/bitstring.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-815">
+          <caret line="731" column="8" selection-start-line="731" selection-start-column="8" selection-end-line="731" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1993870068/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3146">
+          <caret line="50" column="4" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/dask/tests/test_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/biString.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -403,26 +435,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/bitstring.py">
+    <entry file="file://$PROJECT_DIR$/ValueVsBits">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="1368" selection-start-line="1368" selection-end-line="1368" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CNN_info_Sample.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5876">
-          <caret line="271" column="21" selection-start-line="271" selection-start-column="21" selection-end-line="271" selection-end-column="41" />
+        <state relative-caret-position="-260947">
+          <caret line="261" column="14" selection-start-line="261" selection-start-column="14" selection-end-line="261" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CompressCNN.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4645">
-          <caret line="296" selection-start-line="296" selection-end-line="296" />
+        <state relative-caret-position="254">
+          <caret line="301" column="39" lean-forward="true" selection-start-line="301" selection-start-column="39" selection-end-line="301" selection-end-column="39" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#801#1534#0" />
+            <element signature="e#4631#5171#0" />
+            <element signature="e#1671#2007#0" />
+            <element signature="e#2152#2504#0" />
           </folding>
         </state>
       </provider>

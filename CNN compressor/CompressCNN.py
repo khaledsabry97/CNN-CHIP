@@ -1,6 +1,8 @@
 import json
 from bitstring import Bits
 #just variables to make it easy when you rename it
+
+
 _layers = "layers"
 _in_depth = "in_depth"
 _out_depth = "out_depth"
@@ -31,82 +33,6 @@ sizeOfCompression = 14 #should be able to divide by 2
 floatDigits = 9
 intDigits = 4
 
-def compress(s):
-    global wholeLength
-    global compressedLength
-    if len(s) <=1:
-        return ""
-
-    numsTimes = pow(2,countBits) -1
-    count  =numsTimes -1
-    temp = ""
-    current = s[0:sizeOfCompression]
-    for i in range(sizeOfCompression,len(s)-1,sizeOfCompression):
-        if s[i:i + sizeOfCompression] != current or count == 0:
-            temp += str(get_bin(numsTimes - count, countBits))
-            temp += current
-            count = numsTimes
-       # if s[i:i+sizeOfCompression] == current:
-          #  count -= 1
-        current = s[i:i+sizeOfCompression]
-        count -=1
-
-    temp += str(get_bin(numsTimes - count, countBits))
-    temp += current
-    wholeLength += len(s)
-    compressedLength += len(temp)
-    return temp
-
-#print two files after you make all the processing in the program and store them in the bistring and idstring
-def printTofile(bi):
-    global biString
-    global idString
-    global count
-    text_file = open("biString.txt", "w")
-    text_file.write(bi)
-    text_file.close()
-    text_file = open("biOriginalString.txt", "w")
-    text_file.write(biString)
-    text_file.close()
-    text_file = open("idString.txt", "w")
-    text_file.write(idString)
-    text_file.close()
-
-
-#usage of this function to add to the bistring the new value binary and idstring what this value refer to
-def outputS(name,valueInteger):
-    global biString
-    global idString
-    global tempString
-    global count
-    s = get_bin(valueInteger, sizeOfCompression)
-    sr = list(s)
-    if sr[0] == '-':
-        sr[0] = '1'
-        s = "".join(sr)
-    biString += s
-    biString += "\n"
-
-    idString += str(count)
-    idString += " : "
-    idString += name
-    idString += "\n"
-
-    count += 1
-def twosComplement(vaueInteger):
-    a = Bits(int=vaueInteger,length=sizeOfCompression)
-    return  a.bin
-
-def output(name,valueInteger):
-    global biString
-    global idString
-    global count
-    global tempString
-
-    #tempString += twosComplement(valueInteger)
-    idString += name
-    idString += ","
-
 
 def newAddress():
     global biString
@@ -124,30 +50,6 @@ def newAddress():
     idString += str(count)
     idString += " : "
     count+=1
-
-
-
-def check(compressed,str2):
-    global countBits
-    global sizeOfCompression
-    arr1 = compressed.split("\n")
-    arr2 = str2.split("\n")
-    for k in range(len(arr1)):
-        i = arr1[k]
-        temp = ""
-        for j in range(0,len(i),countBits+sizeOfCompression):
-            a = Bits(bin=i[j:j+countBits])
-            count =a.uint
-            for _ in range(count):
-                temp += i[j+countBits:j+countBits+sizeOfCompression]
-
-        if temp != arr2[k]:
-            print("didn't compress right")
-            return
-
-    print("successfully compressed")
-
-
 
 def allCnn(cnn):
     c = cnn["layers"]
@@ -239,38 +141,177 @@ def allCnn(cnn):
             coun +=1
     newAddress()
 
+def compress(s):
+    global wholeLength
+    global compressedLength
+    if len(s) <=1:
+        return ""
+
+    numsTimes = pow(2,countBits) -1
+    count  =numsTimes -1
+    temp = ""
+    current = s[0:sizeOfCompression]
+    for i in range(sizeOfCompression,len(s)-1,sizeOfCompression):
+        if s[i:i + sizeOfCompression] != current or count == 0:
+            temp += str(get_bin(numsTimes - count, countBits))
+            temp += current
+            count = numsTimes
+       # if s[i:i+sizeOfCompression] == current:
+          #  count -= 1
+        current = s[i:i+sizeOfCompression]
+        count -=1
+
+    temp += str(get_bin(numsTimes - count, countBits))
+    temp += current
+    wholeLength += len(s)
+    compressedLength += len(temp)
+    return temp
+
+def check(compressed,str2):
+    global countBits
+    global sizeOfCompression
+    arr1 = compressed.split("\n")
+    arr2 = str2.split("\n")
+    for k in range(len(arr1)):
+        i = arr1[k]
+        temp = ""
+        for j in range(0,len(i),countBits+sizeOfCompression):
+            a = Bits(bin=i[j:j+countBits])
+            count =a.uint
+            for _ in range(count):
+                temp += i[j+countBits:j+countBits+sizeOfCompression]
+
+        if temp != arr2[k]:
+            print("didn't compress right")
+            return
+
+    print("successfully compressed")
+#print two files after you make all the processing in the program and store them in the bistring and idstring
+def printTofile(bi):
+    global biString
+    global idString
+    global count
+    text_file = open("biString.txt", "w")
+    text_file.write(bi)
+    text_file.close()
+    text_file = open("biOriginalString.txt", "w")
+    text_file.write(biString)
+    text_file.close()
+    text_file = open("idString.txt", "w")
+    text_file.write(idString)
+    text_file.close()
 
 
-def test():
-    li = [1,-0.10606159186832435,-1,0.5,-0.5,250]
-    for i in range(len(li)):
-        val = li[i]
+#usage of this function to add to the bistring the new value binary and idstring what this value refer to
+def outputS(name,valueInteger):
+    global biString
+    global idString
+    global tempString
+    global count
+    s = get_bin(valueInteger, sizeOfCompression)
+    sr = list(s)
+    if sr[0] == '-':
+        sr[0] = '1'
+        s = "".join(sr)
+    biString += s
+    biString += "\n"
+
+    idString += str(count)
+    idString += " : "
+    idString += name
+    idString += "\n"
+
+    count += 1
+def twosComplement(vaueInteger):
+    a = Bits(int=vaueInteger,length=sizeOfCompression)
+    return  a.bin
+
+
+
+def output(name,valueInteger):
+    global biString
+    global idString
+    global count
+    global tempString
+
+    tempString += transformToBits(valueInteger)
+    idString += name
+    idString += ","
+
+
+
+
+
+
+
+
+
+def twos(val,minus):
+    if( minus == False):
+        return val
+    newVal = ""
+    for i in range(len(val)):
+        if val[i] == "0":
+            newVal +="1"
+        else:
+            newVal +="0"
+
+    intVal = int(newVal, 2) + 1
+    if(intVal > 16383):
+        numberTwos = Bits(uint=0, length=14)
+    else:
+        numberTwos = Bits(uint=intVal, length=14)
+    n = str(numberTwos.bin)
+    return n
+
+
+
+def transformToBits(val):
+        originalVal = val
         setSignBit =0
+
         if(val < 0):
-            setSignBit = 1
+            setSignBit = get_bin(0,1) # I put that 0
             val = val * -1
         else:
-            setSignBit = 0
+            setSignBit = get_bin(0,1) # I put that 0
+
 
         if(isinstance(val, int)):
-            setIntBits = get_bin(val,4)
-            setFloatBits = get_bin(0,9)
-        if (isinstance(val, float)):
-            st = str(val)
-            st = st.split(".")
-            intpart = int(st[0])
-            floatpart = int(st[1])
-            setIntBits = get_bin(intpart, 4)
-            setFloatBits = get_bin(floatpart,9)
+            setIntBits = get_bin(val,13)
+            setFloatBits = ""
+
+        elif (isinstance(val, float) and val < 1 and val >-1):
+            setIntBits = get_bin(0, 3)
+            setFloatBits = ""
+            currentVal = 0
+            for i in range(1,11):
+                if currentVal + pow(2,-1 * i)<=val:
+                    currentVal += pow(2,-1*i)
+                    setFloatBits += "1"
+                else:
+                    setFloatBits +="0"
+        else:
+            print("integer and float")
+
+
         number = str(setSignBit)+str(setIntBits)+str(setFloatBits)
+        if(originalVal < 0):
+            twoss = twos(number,True)
+        else:
+            twoss = twos(number, False)
 
-        print(number)
+        with open("ValueVsBits", "a") as binary_file:
+            binary_file.write(str(twoss)+"     :     "+str(number)+"     :     "+str(originalVal)+"\n")
 
+        return twoss
 
 
 
 if __name__ == "__main__":
-    #test()
+    with open("ValueVsBits", "w") as binary_file:
+        binary_file.write("")
+    #transformToBits(1)
     #two strings to write in them the binary code and identification for that code
     biString = ""
     biString2 = ""
