@@ -28,6 +28,8 @@ _fcLayer = "Fc Layer "
 get_bin = lambda x, n: format(x, 'b').zfill(n)
 countBits = 2
 sizeOfCompression = 14 #should be able to divide by 2
+floatDigits = 9
+intDigits = 4
 
 def compress(s):
     global wholeLength
@@ -101,8 +103,7 @@ def output(name,valueInteger):
     global count
     global tempString
 
-
-    tempString += twosComplement(valueInteger)
+    #tempString += twosComplement(valueInteger)
     idString += name
     idString += ","
 
@@ -178,7 +179,9 @@ def allCnn(cnn):
     output(_convLayer + _biases + _depth, biasesDepth)
     biasesW = biases[_w]
     for i in range(8):
-        value = int(biasesW[str(i)] * pow(2,sizeOfCompression -1))
+        if biasesW[str(i)] > 1 or biasesW[str(i)] < -1:
+            print(biasesW[str(i)])
+        value = biasesW[str(i)]
         output(_convLayer + _biases + " " + _w + "'" + str(i) + "' ", value)
 
     newAddress()
@@ -189,7 +192,7 @@ def allCnn(cnn):
             if  w[str(i)] > 1 or w[str(i)] < -1:
                 print(w[str(i)])
 
-            value = int(w[str(i)] * pow(2,sizeOfCompression -1))
+            value = w[str(i)]
             output(_convLayer + _filters + " '" + str(coun) + "' " + _w + "'" + str(i) + "' ", value)
         coun += 1
     newAddress()
@@ -218,7 +221,9 @@ def allCnn(cnn):
     biases = fcJson[_biases]
     biasesW = biases[_w]
     for i in range(10):
-        value = int(biasesW[str(i)] *pow(2,sizeOfCompression -1))
+        if biasesW[str(i)] > 1 or biasesW[str(i)] < -1:
+            print(biasesW[str(i)])
+        value = biasesW[str(i)]
         output(_fcLayer + _biases + " " + _w + "'" + str(i) + "' ", value)
 
     newAddress()
@@ -229,18 +234,43 @@ def allCnn(cnn):
             w = c[_w]
             if  w[str(i)] > 1 or w[str(i)] < -1:
                 print(w[str(i)])
-            value = int(w[str(i)] * pow(2,sizeOfCompression -1))
+            value = w[str(i)]
             output(_fcLayer + _filters + " '" + str(coun) + "' " + _w + "'" + str(i) + "' ", value)
             coun +=1
     newAddress()
 
 
 
+def test():
+    li = [1,-0.10606159186832435,-1,0.5,-0.5,250]
+    for i in range(len(li)):
+        val = li[i]
+        setSignBit =0
+        if(val < 0):
+            setSignBit = 1
+            val = val * -1
+        else:
+            setSignBit = 0
+
+        if(isinstance(val, int)):
+            setIntBits = get_bin(val,4)
+            setFloatBits = get_bin(0,9)
+        if (isinstance(val, float)):
+            st = str(val)
+            st = st.split(".")
+            intpart = int(st[0])
+            floatpart = int(st[1])
+            setIntBits = get_bin(intpart, 4)
+            setFloatBits = get_bin(floatpart,9)
+        number = str(setSignBit)+str(setIntBits)+str(setFloatBits)
+
+        print(number)
 
 
 
 
 if __name__ == "__main__":
+    #test()
     #two strings to write in them the binary code and identification for that code
     biString = ""
     biString2 = ""
