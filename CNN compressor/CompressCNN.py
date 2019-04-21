@@ -32,7 +32,7 @@ countBits = 2
 sizeOfCompression = 14 #should be able to divide by 2
 floatDigits = 9
 intDigits = 4
-
+global moCompress
 
 def newAddress():
     global biString
@@ -141,6 +141,15 @@ def allCnn(cnn):
             coun +=1
     newAddress()
 
+
+def output16bits(t):
+    global  moCompress
+    cur = 0
+    while cur < len(t):
+        moCompress +=t[cur:cur+16]
+        moCompress +="\n"
+        cur = cur +16
+
 def compress(s):
     global wholeLength
     global compressedLength
@@ -163,6 +172,8 @@ def compress(s):
 
     temp += str(get_bin(numsTimes - count, countBits))
     temp += current
+
+    output16bits(temp)
     wholeLength += len(s)
     compressedLength += len(temp)
     return temp
@@ -191,8 +202,12 @@ def printTofile(bi):
     global biString
     global idString
     global count
+    global moCompress
     text_file = open("biString.txt", "w")
     text_file.write(bi)
+    text_file.close()
+    text_file = open("mobiString.txt", "w")
+    text_file.write(moCompress)
     text_file.close()
     text_file = open("biOriginalString.txt", "w")
     text_file.write(biString)
@@ -314,6 +329,7 @@ if __name__ == "__main__":
     #transformToBits(1)
     #two strings to write in them the binary code and identification for that code
     biString = ""
+    moCompress = ""
     biString2 = ""
     biStringCompressed = ""
     idString = ""
@@ -334,6 +350,8 @@ if __name__ == "__main__":
         biStringCompressed += compress(arr[i])
         if i != len(arr) -1:
             biStringCompressed +="\n"
+            moCompress += "0000000000000001"
+            moCompress += "\n"
     check(biStringCompressed,biString)
     print((compressedLength/wholeLength)*100)
 
@@ -345,8 +363,10 @@ if __name__ == "__main__":
         print(len(arr[i])%16)
         biStringCompressed += arr[i]
         biStringCompressed +="\n"
-        biStringCompressed +="0000000000000000"
+        biStringCompressed +="0000000000000001"
         biStringCompressed += "\n"
+    biStringCompressed += "0000000000000000"
+    biStringCompressed += "\n"
 
     printTofile(biStringCompressed)
 
