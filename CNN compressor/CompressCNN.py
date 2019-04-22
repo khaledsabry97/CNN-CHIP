@@ -385,6 +385,7 @@ if __name__ == "__main__":
         if i != len(arr) -1:
             biStringCompressed +="\n"
             output16bits("0000000000000001")
+    output16bits("0000000000000000")
 
     check(biStringCompressed,biString)
     print((compressedLength/wholeLength)*100)
