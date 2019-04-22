@@ -1,3 +1,6 @@
+// memory data file (do not edit the following line - required for mem load use)
+// instance=/iochip/i/ramcpu_1
+// format=mti addressradix=h dataradix=b version=1.0 wordsperline=1 noaddress
 ZZZZZZZZZZZZZZZZ
 ZZZZZZZZZZZZZZZZ
 ZZZZZZZZZZZZZZZZ

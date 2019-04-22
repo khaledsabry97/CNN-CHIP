@@ -37,6 +37,10 @@ def check(compressed):
 
 def outputFile(name):
     str = ""
+    str = "// memory data file (do not edit the following line - required for mem load use)" +"\n"
+    str +="// instance=/iochip/i/ramcpu_1"+"\n"
+    str +="// format=mti addressradix=h dataradix=b version=1.0 wordsperline=1 noaddress"+"\n"
+
     for ka in range(len(arr)):
         str += arr[ka]
         str += "\n"

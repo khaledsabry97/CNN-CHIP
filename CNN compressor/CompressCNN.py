@@ -33,6 +33,12 @@ sizeOfCompression = 14 #should be able to divide by 2
 floatDigits = 9
 intDigits = 4
 global moCompress
+global arrs
+global it
+it = 16383
+arrs = ["ZZZZZZZZZZZZZZZZ"] *16384
+
+
 
 def newAddress():
     global biString
@@ -142,13 +148,41 @@ def allCnn(cnn):
     newAddress()
 
 
+def addToArrs(count,value):
+    global it
+    global arrs
+    strs = ""
+    strs+= get_bin(count, 8)
+    strs += get_bin(value, 8)
+    arr[it] = strs
+    it -=1
+
 def output16bits(t):
+    global it
+    global arrs
+    cur = 0
+    while cur < len(t):
+        arrs[it] =t[cur:cur+16]
+        cur = cur + 16
+        it -=1
+
+def outpusdfsdf16bits(t):
     global  moCompress
     cur = 0
     while cur < len(t):
         moCompress +=t[cur:cur+16]
         moCompress +="\n"
         cur = cur +16
+
+def outputDecending():
+    global moCompress
+    global arrs
+    moCompress = "// memory data file (do not edit the following line - required for mem load use)" +"\n"
+    moCompress +="// instance=/iochip/i/ramcpu_1"+"\n"
+    moCompress +="// format=mti addressradix=h dataradix=b version=1.0 wordsperline=1 noaddress"+"\n"
+    for ka in range(len(arrs)):
+        moCompress += arrs[ka]
+        moCompress += "\n"
 
 def compress(s):
     global wholeLength
@@ -350,8 +384,8 @@ if __name__ == "__main__":
         biStringCompressed += compress(arr[i])
         if i != len(arr) -1:
             biStringCompressed +="\n"
-            moCompress += "0000000000000001"
-            moCompress += "\n"
+            output16bits("0000000000000001")
+
     check(biStringCompressed,biString)
     print((compressedLength/wholeLength)*100)
 
@@ -368,5 +402,6 @@ if __name__ == "__main__":
     biStringCompressed += "0000000000000000"
     biStringCompressed += "\n"
 
+    outputDecending()
     printTofile(biStringCompressed)
 

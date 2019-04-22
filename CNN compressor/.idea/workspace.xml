@@ -4,10 +4,7 @@
     <list default="true" id="a3e65bc1-d57d-4c86-9f97-e2eefa03b21a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CompressCNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/CompressCNN.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/biString.txt" beforeDir="false" afterPath="$PROJECT_DIR$/biString.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Image Compressor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Image Compressor/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Image Compressor/Output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Image Compressor/Output.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Image Compressor/compress RLC.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Image Compressor/compress RLC.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobiString.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mobiString.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,14 +14,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CompressCNN.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="354" selection-start-line="354" selection-end-line="354" />
+            <state relative-caret-position="-381">
+              <caret line="163" column="23" selection-start-line="163" selection-start-column="23" selection-end-line="163" selection-end-column="23" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <element signature="e#805#1086#0" />
+                <element signature="e#822#1103#0" />
+                <element signature="e#1126#3848#0" />
+                <element signature="e#5503#5959#0" />
+                <element signature="e#6104#6456#0" />
+                <element signature="e#6601#6765#0" />
               </folding>
             </state>
           </provider>
@@ -33,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobiString.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26">
-              <caret line="1" column="16" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="16" />
+            <state relative-caret-position="305326">
+              <caret line="16381" column="16" selection-start-line="16381" selection-start-column="16" selection-end-line="16381" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -60,8 +61,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Image Compressor/compress RLC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-779">
-              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            <state relative-caret-position="364">
+              <caret line="38" selection-start-line="38" selection-end-line="41" selection-end-column="19" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -90,17 +91,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/idString.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1869">
+            <state relative-caret-position="8528">
               <caret line="7" column="316884" selection-start-line="7" selection-start-column="316884" selection-end-line="7" selection-end-column="316884" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/biString.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="11" column="16" selection-start-line="11" selection-end-line="11" selection-end-column="16" />
+            <state relative-caret-position="338">
+              <caret line="13" column="16" selection-start-line="12" selection-start-column="90" selection-end-line="13" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -108,7 +109,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CNN_info_Sample.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
+            <state relative-caret-position="7046">
               <caret line="271" column="21" selection-start-line="271" selection-start-column="21" selection-end-line="271" selection-end-column="41" />
             </state>
           </provider>
@@ -126,6 +127,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>newAddress</find>
+      <find>000000000000001</find>
+      <find>arrs</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -143,7 +146,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
+    <option name="x" value="955" />
     <option name="width" value="974" />
     <option name="height" value="1087" />
   </component>
@@ -264,7 +267,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32502595" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32502595" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39875388" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -307,8 +310,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/CompressCNN.py</url>
-          <line>228</line>
+          <line>260</line>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/CompressCNN.py</url>
+          <line>163</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -323,11 +331,23 @@
         <watch expression="i" language="Python" />
         <watch expression="len" language="Python" />
         <watch expression="moCompress" language="Python" />
+        <watch expression="it" language="Python" />
+        <watch expression="t[cur:cur+16]" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>t[cur:cur+16]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>it</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>moCompress</expression-string>
         <language-id>Python</language-id>
@@ -365,11 +385,6 @@
       </expression>
       <expression>
         <expression-string>compressedLength</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>wholeLength</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -411,6 +426,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ValueVsBits">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/bitstring.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18746">
@@ -425,59 +447,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/idString.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8528">
+          <caret line="7" column="316884" selection-start-line="7" selection-start-column="316884" selection-end-line="7" selection-end-column="316884" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CNN_info_Sample.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
+        <state relative-caret-position="7046">
           <caret line="271" column="21" selection-start-line="271" selection-start-column="21" selection-end-line="271" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CompressCNN.py">
+    <entry file="file://$PROJECT_DIR$/biString.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="354" selection-start-line="354" selection-end-line="354" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#805#1086#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobiString.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ValueVsBits">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+        <state relative-caret-position="338">
+          <caret line="13" column="16" selection-start-line="12" selection-start-column="90" selection-end-line="13" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Image Compressor/compress RLC.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-779">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        <state relative-caret-position="364">
+          <caret line="38" selection-start-line="38" selection-end-line="41" selection-end-column="19" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/idString.txt">
+    <entry file="file://$PROJECT_DIR$/mobiString.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1869">
-          <caret line="7" column="316884" selection-start-line="7" selection-start-column="316884" selection-end-line="7" selection-end-column="316884" />
+        <state relative-caret-position="305326">
+          <caret line="16381" column="16" selection-start-line="16381" selection-start-column="16" selection-end-line="16381" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/biString.txt">
+    <entry file="file://$PROJECT_DIR$/CompressCNN.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="11" column="16" selection-start-line="11" selection-end-line="11" selection-end-column="16" />
+        <state relative-caret-position="-381">
+          <caret line="163" column="23" selection-start-line="163" selection-start-column="23" selection-end-line="163" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#822#1103#0" />
+            <element signature="e#1126#3848#0" />
+            <element signature="e#5503#5959#0" />
+            <element signature="e#6104#6456#0" />
+            <element signature="e#6601#6765#0" />
+          </folding>
         </state>
       </provider>
     </entry>
