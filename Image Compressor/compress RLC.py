@@ -55,6 +55,9 @@ def outputFile(name):
 '''
 
 
+
+
+
 def addToStr(count,value):
     global it
     global arr
@@ -64,13 +67,7 @@ def addToStr(count,value):
     arr[it] = strs
     it -=1
 
-'''
-def addToStr(count,value):
-    global str
-    str += get_bin(count, 8)
-    str += get_bin(value, 8)
-    str += "\n"
-'''
+
 if __name__ == "__main__":
     it = 1023
     str = ""
@@ -115,6 +112,6 @@ if __name__ == "__main__":
     print(rows)
     print(str)
     #check(str)
-    outputFile("Output.txt")
+    outputFile("Image.txt")
 
 

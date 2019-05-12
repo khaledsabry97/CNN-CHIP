@@ -60,7 +60,7 @@ def newAddress():
 def allCnn(cnn):
     c = cnn["layers"]
     newAddress()
-    output("num Of Layers", len(c))
+    output("num Of Layers", len(c),0)
     newAddress()
     convJson = c[1]
     poolJson = c[3]
@@ -72,25 +72,25 @@ def allCnn(cnn):
     l1DecayMul = convJson[_l1_decay_mul]
     l2DecayMul = convJson[_l2_decay_mul]
     pad = convJson[_pad]
-    output(_convLayer + _sx, sx)
-    output(_convLayer + _in_depth, inDepth)
-    output(_convLayer + _out_depth, outDepth)
-    output(_convLayer + _out_sx, outSx)
-    output(_convLayer + _l1_decay_mul, l1DecayMul)
-    output(_convLayer + _l2_decay_mul, l2DecayMul)
-    output(_convLayer + _pad, pad)
-    output(_convLayer + "Filter count", len(convJson[_filters]))
-    output(_convLayer + "id", 1)
-    newAddress()
+    output(_convLayer + _sx, sx,1)
+    output(_convLayer + _in_depth, inDepth,1)
+    output(_convLayer + _out_depth, outDepth,1)
+    output(_convLayer + _out_sx, outSx,1)
+    output(_convLayer + _l1_decay_mul, l1DecayMul,1)
+    output(_convLayer + _l2_decay_mul, l2DecayMul,1)
+    output(_convLayer + _pad, pad,1)
+    output(_convLayer + "Filter count", len(convJson[_filters]),1)
+    output(_convLayer + "id", 1,1)
+    #newAddress()
     biases = convJson[_biases]
     biasesDepth = biases[_depth]
-    output(_convLayer + _biases + _depth, biasesDepth)
+    output(_convLayer + _biases + _depth, biasesDepth,1)
     biasesW = biases[_w]
     for i in range(8):
         if biasesW[str(i)] > 1 or biasesW[str(i)] < -1:
             print(biasesW[str(i)])
         value = biasesW[str(i)]
-        output(_convLayer + _biases + " " + _w + "'" + str(i) + "' ", value)
+        output(_convLayer + _biases + " " + _w + "'" + str(i) + "' ", value,1)
 
     newAddress()
     coun = 0
@@ -101,22 +101,23 @@ def allCnn(cnn):
                 print(w[str(i)])
 
             value = w[str(i)]
-            output(_convLayer + _filters + " '" + str(coun) + "' " + _w + "'" + str(i) + "' ", value)
+            output(_convLayer + _filters + " '" + str(coun) + "' " + _w + "'" + str(i) + "' ", value,1)
+        newAddress()
         coun += 1
-    newAddress()
+
     sx = poolJson[_sx]
     inDepth = poolJson[_in_depth]
     outDepth = poolJson[_out_depth]
     outSx = poolJson[_out_sx]
     pad = poolJson[_pad]
 
-    output(_poolLayer + _sx, sx)
-    output(_poolLayer + _in_depth, inDepth)
-    output(_poolLayer + _out_depth, outDepth)
-    output(_poolLayer + _out_sx, outSx)
-    output(_poolLayer + _in_sx, convJson[_out_sx])
-    output(_poolLayer + _pad, pad)
-    output(_poolLayer + "id", 2)
+    output(_poolLayer + _sx, sx,1)
+    output(_poolLayer + _in_depth, inDepth,1)
+    output(_poolLayer + _out_depth, outDepth,1)
+    output(_poolLayer + _out_sx, outSx,1)
+    output(_poolLayer + _in_sx, convJson[_out_sx],1)
+    output(_poolLayer + _pad, pad,1)
+    output(_poolLayer + "id", 2,1)
 
     newAddress()
 
@@ -240,7 +241,7 @@ def printTofile(bi):
     text_file = open("biString.txt", "w")
     text_file.write(bi)
     text_file.close()
-    text_file = open("mobiString.txt", "w")
+    text_file = open("Json.txt", "w")
     text_file.write(moCompress)
     text_file.close()
     text_file = open("biOriginalString.txt", "w")
@@ -277,13 +278,14 @@ def twosComplement(vaueInteger):
 
 
 
-def output(name,valueInteger):
+def output(name,valueInteger,belongToWho = 0):
     global biString
     global idString
     global count
     global tempString
 
-    tempString += transformToBits(valueInteger)
+    tempString += transformToBits(valueInteger,belongToWho)
+
     idString += name
     idString += ","
 
@@ -315,7 +317,7 @@ def twos(val,minus):
 
 
 
-def transformToBits(val):
+def transformToBits(val,belongToWho):
         originalVal = val
         setSignBit =0
 
@@ -326,15 +328,30 @@ def transformToBits(val):
             setSignBit = get_bin(0,1) # I put that 0
 
 
-        if(isinstance(val, int)):
+        if(isinstance(val, int) and belongToWho == 0):
             setIntBits = get_bin(val,13)
             setFloatBits = ""
 
-        elif (isinstance(val, float) and val < 1 and val >-1):
-            setIntBits = get_bin(0, 3)
+        elif (isinstance(val, float) and val < 1 and val >-1 and belongToWho ==0):
+            setIntBits = get_bin(0, 1)
             setFloatBits = ""
             currentVal = 0
-            for i in range(1,11):
+            for i in range(1,13):
+                if currentVal + pow(2,-1 * i)<=val:
+                    currentVal += pow(2,-1*i)
+                    setFloatBits += "1"
+                else:
+                    setFloatBits +="0"
+
+        elif(isinstance(val, int) and belongToWho == 1):
+            setIntBits = get_bin(val,6)
+            setFloatBits = get_bin(0,7)
+
+        elif (isinstance(val, float) and val < 1 and val >-1 and belongToWho ==1):
+            setIntBits = get_bin(0, 6)
+            setFloatBits = ""
+            currentVal = 0
+            for i in range(1,8):
                 if currentVal + pow(2,-1 * i)<=val:
                     currentVal += pow(2,-1*i)
                     setFloatBits += "1"
